@@ -8,7 +8,7 @@ const ProductGrid = () => {
   const { products } = useProducts(); // ✅ get from context
 
   return (
-    <section className="min-h-screen pt-24 pb-16 px-6 md:px-12 bg-[#FFF8E7] font-poppins">
+    <section className="min-h-screen pt-32 pb-16 px-6 md:px-12 bg-[#FFF8E7] font-poppins">
       <h2 className="text-3xl md:text-4xl font-bold text-[#5C2C06] text-center mb-12">
         {language === "EN" ? "Explore Our Oils" : "आमच्या शुद्ध तेलांचा अनुभव घ्या"}
       </h2>
