@@ -31,7 +31,7 @@ const HomeCarousel = () => {
   const selectedImages = isMobile ? mobileImages : desktopImages;
 
   return (
-    <div className="w-full min-h-[60vh] sm:min-h-[60vh] md:min-h-[80vh] overflow-hidden">
+    <div className="w-[90%] min-h-[60vh] sm:min-h-[60vh] md:min-h-[80vh] overflow-hidden">
       <Carousel interval={2500} controls={false} indicators fade>
         {selectedImages.map((img, i) => (
           <Carousel.Item key={i} className="relative aspect-[9/16] -mt-6 sm:aspect-auto">

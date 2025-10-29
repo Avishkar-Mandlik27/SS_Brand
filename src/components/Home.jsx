@@ -11,7 +11,7 @@ const Home = () => {
   return (
     <div className="w-full mt-16 lg:mt-28">
       {/* Carousel Section */}
-      <div className="max-w-full mx-auto px-4 sm:px-2 lg:px-8">
+      <div className="max-w-full flex justify-center items-center mx-auto px-4 sm:px-2 lg:px-8">
         <HomeCarousel />
       </div>
 
