@@ -2,35 +2,35 @@ import React, { createContext, useContext } from "react";
 
 
 import CastorImg1 from "../assets/products/CastorOil1.png";
-import CastorImg2 from "../assets/products/CastorOil2.jpg";
-import CastorImg3 from "../assets/products/CastorOil3.jpg";
+import CastorImg2 from "../assets/products/CastorOil2.JPG";
+import CastorImg3 from "../assets/products/CastorOil3.JPG";
 
 import FlaxSeedImg1 from "../assets/products/FlaxSeedOil1.png";
-import FlaxSeedImg2 from "../assets/products/FlaxSeedOil2.jpg";
-import FlaxSeedImg3 from "../assets/products/FlaxSeedOil3.jpg";
+import FlaxSeedImg2 from "../assets/products/FlaxSeedOil2.JPG";
+import FlaxSeedImg3 from "../assets/products/FlaxSeedOil3.JPG";
 
 import CoconutOilImg1 from "../assets/products/CoconutOil1.png";
-import CoconutOilImg2 from "../assets/products/CoconutOil2.jpg";
-import CoconutOilImg3 from "../assets/products/CoconutOil3.jpg";
+import CoconutOilImg2 from "../assets/products/CoconutOil2.JPG";
+import CoconutOilImg3 from "../assets/products/CoconutOil3.JPG";
 
 import MustardOilImg1 from "../assets/products/MustardOil1.png";
-import MustardOilImg2 from "../assets/products/MustardOil2.jpg";
-import MustardOilImg3 from "../assets/products/MustardOil3.jpg";
+import MustardOilImg2 from "../assets/products/MustardOil2.JPG";
+import MustardOilImg3 from "../assets/products/MustardOil3.JPG";
 
-import SafflowerOilImg1 from "../assets/products/Safflower1.jpg";
-import SafflowerOilImg2 from "../assets/products/Safflower2.jpg";
-import SafflowerOilImg3 from "../assets/products/Safflower3.jpg";
-import SafflowerOilImg4 from "../assets/products/Safflower4.jpg";
+import SafflowerOilImg1 from "../assets/products/Safflower1.JPG";
+import SafflowerOilImg2 from "../assets/products/Safflower2.JPG";
+import SafflowerOilImg3 from "../assets/products/Safflower3.JPG";
+import SafflowerOilImg4 from "../assets/products/Safflower4.JPG";
 
-import SesameOilImg1 from "../assets/products/SesameOil1.jpg";
-import SesameOilImg2 from "../assets/products/SesameOil2.jpg";
-import SesameOilImg3 from "../assets/products/SesameOil3.jpg";
-import SesameOilImg4 from "../assets/products/SesameOil4.jpg";
+import SesameOilImg1 from "../assets/products/SesameOil1.JPG";
+import SesameOilImg2 from "../assets/products/SesameOil2.JPG";
+import SesameOilImg3 from "../assets/products/SesameOil3.JPG";
+import SesameOilImg4 from "../assets/products/SesameOil4.JPG";
 
-import SunflowerOilImg1 from "../assets/products/SunflowerOil1.jpg";
-import SunflowerOilImg2 from "../assets/products/SunflowerOil2.jpg";
-import SunflowerOilImg3 from "../assets/products/SunflowerOil3.jpg";
-import SunflowerOilImg4 from "../assets/products/SunflowerOil4.jpg";
+import SunflowerOilImg1 from "../assets/products/SunflowerOil1.JPG";
+import SunflowerOilImg2 from "../assets/products/SunflowerOil2.JPG";
+import SunflowerOilImg3 from "../assets/products/SunflowerOil3.JPG";
+import SunflowerOilImg4 from "../assets/products/SunflowerOil4.JPG";
 
 // Create the context
 const ProductsContext = createContext();
