@@ -38,7 +38,7 @@ const HomeCarousel = () => {
             <img
               src={img}
               alt={`Slide ${i + 1}`}
-              className="w-full h-full object-cover"
+              className="w-full h-full object-contain"
             />
           </Carousel.Item>
         ))}

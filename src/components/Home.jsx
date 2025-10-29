@@ -9,9 +9,9 @@ const Home = () => {
   const { language } = useLanguage(); // get current language
 
   return (
-    <div className="w-full mt-16 lg:mt-28">
+    <div className="w-full mt-12 lg:mt-28">
       {/* Carousel Section */}
-      <div className="max-w-full flex justify-center items-center mx-auto px-4 sm:px-2 lg:px-8">
+      <div className="max-w-full flex justify-center items-center mx-auto sm:px-2 lg:px-12">
         <HomeCarousel />
       </div>
 
