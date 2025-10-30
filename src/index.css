@@ -1,4 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Ancizar+Serif:wght@400;700&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -30,6 +32,39 @@ textarea {
   scrollbar-width: none; /* Firefox */
 }
 
+.brand-logo-text {
+  font-family: 'Ancizar Serif', serif;
+  font-weight: 700;
+  font-size: 1.8rem; /* base size */
+  color: #5C2C06;
+  letter-spacing: 0.05em;
+  display: flex;
+  flex-direction: column;
+  line-height: 1.1;
+}
+
+.brand-line {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+
+.brand-logo-text .big-s {
+  font-size: 2.6rem;  /* bigger 'S' */
+  line-height: 1;
+  color: #5C2C06;
+  margin-right: 0.1rem;
+}
+
+.tagline {
+  font-family: 'Ancizar Serif', serif;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: #A66A3C;
+  text-transform: uppercase;
+  margin-top: 0.2rem;
+  letter-spacing: 0.05em;
+}
 
 @keyframes smooth-bounce {
   0%, 100% { transform: translateY(0); }

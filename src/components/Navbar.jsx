@@ -10,7 +10,7 @@ const Navbar = () => {
   const menuItems = [
     { label: language === 'EN' ? "Home" : "मुखपृष्ठ", path: "/home" },
     { label: language === 'EN' ? "Products" : "उत्पादने", path: "/products" },
-    { label: language === 'EN' ? "Blogs" : "ब्लॉग्स", path: "/blogs" },
+    { label: language === 'EN' ? "About Us" : "आमच्याबद्दल", path: "/about" },
     { label: language === 'EN' ? "Contact Us" : "संपर्क करा", path: "/contact" },
   ];
 

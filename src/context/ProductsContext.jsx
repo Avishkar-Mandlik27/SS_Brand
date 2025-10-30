@@ -22,12 +22,12 @@ import SafflowerOilImg2 from "../assets/products/Safflower2.JPG";
 import SafflowerOilImg3 from "../assets/products/Safflower3.JPG";
 import SafflowerOilImg4 from "../assets/products/Safflower4.JPG";
 
-import SesameOilImg1 from "../assets/products/SesameOil1.JPG";
+import SesameOilImg1 from "../assets/products/SesameOil1.png";
 import SesameOilImg2 from "../assets/products/SesameOil2.JPG";
 import SesameOilImg3 from "../assets/products/SesameOil3.JPG";
 import SesameOilImg4 from "../assets/products/SesameOil4.JPG";
 
-import SunflowerOilImg1 from "../assets/products/SunflowerOil1.JPG";
+import SunflowerOilImg1 from "../assets/products/SunflowerOil1.png";
 import SunflowerOilImg2 from "../assets/products/SunflowerOil2.JPG";
 import SunflowerOilImg3 from "../assets/products/SunflowerOil3.JPG";
 import SunflowerOilImg4 from "../assets/products/SunflowerOil4.JPG";
@@ -45,7 +45,7 @@ export const ProductsProvider = ({ children }) => {
             id: 1,
             name: { EN: "Castor Oil", MR: "एरंडीचे तेल" },
             image: [CastorImg1, CastorImg2, CastorImg3],
-            price: { "500ml": "₹180", "1L": "₹340" },
+            price: { "250ml": "₹800" },
             process: {
                 EN: "Our castor oil is extracted through a traditional wooden cold-pressed (ghani) method, preserving all the essential nutrients and natural aroma.",
                 MR: "आमचे एरंडीचे तेल पारंपारिक लाकडी घाणीतून थंड दाब पद्धतीने काढले जाते, ज्यामुळे सर्व पोषक घटक आणि नैसर्गिक सुगंध टिकून राहतात."
@@ -76,7 +76,7 @@ export const ProductsProvider = ({ children }) => {
             id: 2,
             name: { EN: "FlaxSeed Oil", MR: "जवसाचे तेल" },
             image: [FlaxSeedImg1, FlaxSeedImg2, FlaxSeedImg3],
-            price: { "500ml": "₹150", "1L": "₹280" },
+            price: { "250ml": "₹800"},
             process: {
                 EN: "Flaxseeds are cold-pressed to extract oil rich in Omega-3. Naturally filtered without refining to preserve nutrition.",
                 MR: "जवसाचे तेल ओमेगा-३ ने समृद्ध आहे आणि थंड दाब पद्धतीने काढले जाते. नैसर्गिकरीत्या गाळले जाते, रिफायनिंग केले जात नाही."
@@ -107,7 +107,7 @@ export const ProductsProvider = ({ children }) => {
             id: 3,
             name: { EN: "Coconut Oil", MR: "नारळाचे तेल" },
             image: [CoconutOilImg1, CoconutOilImg2, CoconutOilImg3],
-            price: { "500ml": "₹160", "1L": "₹300" },
+            price: { "1L": "₹800" },
             process: {
                 EN: "Made from fresh coconuts using cold-pressed extraction to retain natural aroma and nutrients.",
                 MR: "ताज्या नारळांपासून थंड दाब पद्धतीने तयार केले जाते, ज्यामुळे नैसर्गिक सुगंध आणि पोषक घटक टिकतात."
@@ -138,7 +138,7 @@ export const ProductsProvider = ({ children }) => {
             id: 4,
             name: { EN: "Mustard Oil", MR: "मोहरीचे तेल" },
             image: [MustardOilImg1, MustardOilImg2, MustardOilImg3],
-            price: { "500ml": "₹140", "1L": "₹260" },
+            price: { "250ml": "₹800" },
             process: {
                 EN: "Traditionally extracted from mustard seeds using wooden cold-press for high purity.",
                 MR: "मोहरीच्या बियाण्यांपासून पारंपारिक लाकडी घाणीतून तेल काढले जाते, ज्यामुळे शुद्धता टिकते."
@@ -169,7 +169,7 @@ export const ProductsProvider = ({ children }) => {
             id: 5,
             name: { EN: "Safflower Oil", MR: "कर्डईचे तेल" },
             image: [SafflowerOilImg1, SafflowerOilImg2, SafflowerOilImg3, SafflowerOilImg4],
-            price: { "500ml": "₹170", "1L": "₹320" },
+            price: { "1L": "₹400" },
             process: {
                 EN: "Cold-pressed from premium safflower seeds to preserve natural Vitamin E and linoleic acid.",
                 MR: "कर्डईच्या बियाण्यांपासून थंड दाब पद्धतीने काढले जाते, ज्यामुळे नैसर्गिक व्हिटॅमिन ई टिकते."
@@ -200,7 +200,7 @@ export const ProductsProvider = ({ children }) => {
             id: 6,
             name: { EN: "Sesame Oil", MR: "तीळाचे तेल" },
             image: [SesameOilImg1, SesameOilImg2, SesameOilImg3, SesameOilImg4],
-            price: { "500ml": "₹160", "1L": "₹300" },
+            price: { "250ml": "₹800" },
             process: {
                 EN: "Extracted from high-quality sesame seeds using traditional ghani method without any chemicals.",
                 MR: "उच्च प्रतीच्या तिळांपासून पारंपारिक घाणीतून रासायनिक पदार्थांशिवाय काढले जाते."
@@ -231,7 +231,7 @@ export const ProductsProvider = ({ children }) => {
             id: 7,
             name: { EN: "Sunflower Oil", MR: "सूर्यफुलाचे तेल" },
             image: [SunflowerOilImg1, SunflowerOilImg2, SunflowerOilImg3, SunflowerOilImg4],
-            price: { "500ml": "₹150", "1L": "₹270" },
+            price: { "1L": "₹350" },
             process: {
                 EN: "Cold-pressed from fresh sunflower seeds to retain Vitamin E and Omega-6 fats naturally.",
                 MR: "ताज्या सूर्यफुलाच्या बियाण्यांपासून थंड दाब पद्धतीने तयार केले जाते, व्हिटॅमिन ई नैसर्गिकरीत्या टिकवले जाते."

@@ -3,9 +3,9 @@ import { createBrowserRouter } from 'react-router-dom'
 import App from '../App';
 import Home from '../components/Home';
 import ContactUs from '../components/ContactUs';
-import Blogs from '../components/Blogs';
 import ProductDetails from '../components/ProductDetails';
 import ProductGrid from '../components/ProductGrid';
+import AboutUs from '../components/AboutUs';
 
 export let routes = createBrowserRouter([{
 
@@ -25,8 +25,8 @@ export let routes = createBrowserRouter([{
             element: <ProductGrid />
         },
         {
-            path: "/blogs",
-            element: <Blogs/>
+            path: "/about",
+            element:  <AboutUs />
         },
         {
             path: "/contact",

@@ -8,12 +8,14 @@ import { LanguageProvider } from './context/LanguageProvider.jsx'
 import { ProductsProvider } from './context/ProductsContext.jsx'
 
 createRoot(document.getElementById('root')).render(
-
+    
     <LanguageProvider>
         <ProductsProvider>
+            
             <RouterProvider router={routes} >
                 <App />
             </RouterProvider>
+            
         </ProductsProvider>
     </LanguageProvider>
 )

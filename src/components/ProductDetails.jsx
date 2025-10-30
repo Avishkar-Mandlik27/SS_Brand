@@ -4,6 +4,7 @@ import { FaStar, FaStarHalfAlt, FaRegStar, FaChevronDown, FaChevronUp } from "re
 import ProductCarousel from "./ProductCarousel";
 import ProductReviews from "./ProductReviews";
 import { useLanguage } from "../context/LanguageProvider";
+import WhatsAppDiv from "./WhatsAppDiv";
 
 const ProductDetails = () => {
   const { state } = useLocation();
@@ -11,29 +12,28 @@ const ProductDetails = () => {
   const { language } = useLanguage();
   const product = state?.product;
 
-  // ---------------- STATE ----------------
   const [formState, setFormState] = useState({
     name: "",
     phone: "",
     email: "",
     product: product ? product.name[language] : "",
     quantity: 1,
-    size: "500ml",
+    size: Object.keys(product?.price || {})[0] || "",
     address: "",
     pincode: "",
   });
 
   const [errors, setErrors] = useState({});
-  const [totalPrice, setTotalPrice] = useState(0);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState(null);
-
-  // Show more for Benefits section
+  const [totalPrice, setTotalPrice] = useState(0);
   const [showMore, setShowMore] = useState(false);
-  const [isMobile, setIsMobile] = useState(
-    typeof window !== "undefined" && window.innerWidth < 640
-  );
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 640);
 
+  const GOOGLE_SCRIPT_URL =
+    "https://script.google.com/macros/s/AKfycbzYhWruK8x2daGTHLbpQ7SXbtqo3t-m1ZL5d-0iOJoXwR7XRNBZmydNm02E-xbTpvUo/exec";
+
+  // Resize watcher
   useEffect(() => {
     const handleResize = () => {
       const currentlyMobile = window.innerWidth < 640;
@@ -44,16 +44,14 @@ const ProductDetails = () => {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  const GOOGLE_SCRIPT_URL =
-    "https://script.google.com/macros/s/AKfycbwkjZtf8_tR6JjssLY3G5n_q1Se3w5jHx8h67B8Wpxuxf65K7AITbyJha8Iq25_JfApcQ/exec";
-
-  // ---------------- EFFECTS ----------------
+  // Price update
   useEffect(() => {
     const unitPrice =
       Number(product?.price?.[formState.size]?.replace(/[^\d.]/g, "")) || 0;
     setTotalPrice(unitPrice * formState.quantity);
   }, [formState.quantity, formState.size, product]);
 
+  // Update product name on language change
   useEffect(() => {
     if (product) {
       setFormState((prev) => ({
@@ -64,51 +62,55 @@ const ProductDetails = () => {
   }, [language, product]);
 
   // ---------------- HANDLERS ----------------
+  // Handle field changes with validation
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormState((prev) => ({ ...prev, [name]: value }));
 
     if (name === "phone") {
-      const phoneRegex = /^[5-9]\d{9}$/;
-      setErrors((prev) => ({
-        ...prev,
-        phone: phoneRegex.test(value)
-          ? ""
-          : language === "EN"
-            ? "Enter a valid 10-digit Indian number starting with 5–9"
-            : "5–9 ने सुरू होणारा 10 अंकी वैध क्रमांक टाका",
-      }));
+      const digits = value.replace(/\D/g, "");
+      setFormState((prev) => ({ ...prev, phone: digits }));
+      if (!/^[5-9]\d{9}$/.test(digits)) {
+        setErrors((prev) => ({
+          ...prev,
+          phone:
+            language === "EN"
+              ? "Enter valid 10-digit Indian number starting with 5–9."
+              : "5–9 ने सुरू होणारा वैध 10 अंकी क्रमांक टाका.",
+        }));
+      } else setErrors((prev) => ({ ...prev, phone: "" }));
+      return;
     }
 
     if (name === "email") {
       const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      setFormState((prev) => ({ ...prev, email: value }));
       setErrors((prev) => ({
         ...prev,
         email: emailRegex.test(value)
           ? ""
           : language === "EN"
-            ? "Enter a valid email address"
-            : "वैध ईमेल पत्ता प्रविष्ट करा",
+            ? "Enter a valid email address."
+            : "वैध ईमेल पत्ता टाका.",
       }));
+      return;
     }
 
     if (name === "pincode") {
-      const pinRegex = /^\d{6}$/;
-      setErrors((prev) => ({
-        ...prev,
-        pincode: pinRegex.test(value)
-          ? ""
-          : language === "EN"
-            ? "Enter a valid 6-digit Indian pincode"
-            : "वैध 6-अंकी पिनकोड टाका",
-      }));
+      const digits = value.replace(/\D/g, "");
+      setFormState((prev) => ({ ...prev, pincode: digits }));
+      if (!/^\d{6}$/.test(digits)) {
+        setErrors((prev) => ({
+          ...prev,
+          pincode:
+            language === "EN"
+              ? "Enter valid 6-digit pincode."
+              : "वैध 6-अंकी पिनकोड टाका.",
+        }));
+      } else setErrors((prev) => ({ ...prev, pincode: "" }));
+      return;
     }
 
-    if (name === "size") {
-      document
-        .getElementById("orderForm")
-        ?.scrollIntoView({ behavior: "smooth" });
-    }
+    setFormState((prev) => ({ ...prev, [name]: value }));
   };
 
   const handleQuantity = (type) => {
@@ -119,16 +121,45 @@ const ProductDetails = () => {
     }));
   };
 
+  // Submit (ContactUs-style)
   const handleSubmit = async (e) => {
     e.preventDefault();
     setSubmitStatus(null);
+
+    if (
+      !formState.name ||
+      !formState.phone ||
+      !formState.email ||
+      !formState.address ||
+      !formState.pincode
+    ) {
+      setErrors((prev) => ({
+        ...prev,
+        form:
+          language === "EN"
+            ? "All fields are required."
+            : "सर्व फील्ड भरणे आवश्यक आहे.",
+      }));
+      return;
+    }
+
     setIsSubmitting(true);
 
     try {
       const formData = new FormData();
-      Object.entries(formState).forEach(([key, value]) =>
-        formData.append(key, value)
+
+      // 🧾 Add form fields
+      Object.entries(formState).forEach(([key, val]) =>
+        formData.append(key, val)
       );
+
+      // 🛍️ Add product details explicitly
+      if (product) {
+        formData.append("product_name", product.name[language]);
+        formData.append("product_size", formState.size);
+        formData.append("product_quantity", formState.quantity);
+        formData.append("product_total", totalPrice.toFixed(2));
+      }
 
       const response = await fetch(GOOGLE_SCRIPT_URL, {
         method: "POST",
@@ -152,14 +183,15 @@ const ProductDetails = () => {
       } else {
         setSubmitStatus("error");
       }
-    } catch (error) {
-      console.error("Error:", error);
+    } catch (err) {
+      console.error("Error:", err);
       setSubmitStatus("error");
     } finally {
       setIsSubmitting(false);
     }
   };
 
+  // Star rating render
   const renderStars = (rating) => {
     const stars = [];
     for (let i = 1; i <= 5; i++) {
@@ -205,6 +237,7 @@ const ProductDetails = () => {
 
   return (
     <section className="min-h-screen mt-16 pt-8 pb-10 sm:pt-16 font-poppins">
+      <WhatsAppDiv />
       <div className="flex flex-col lg:flex-row justify-around w-full px-4 gap-8">
         {/* 🖼️ Product Carousel + Process */}
         <div className="w-full lg:w-[45%] flex flex-col gap-6">
@@ -236,9 +269,13 @@ const ProductDetails = () => {
             </h3>
 
             <div className="grid grid-cols-2 gap-4 text-sm sm:text-base">
-              <p>500ml: {product.price["500ml"]}</p>
-              <p>1L: {product.price["1L"]}</p>
+              {Object.entries(product.price || {}).map(([size, price]) => (
+                <p key={size}>
+                  {size}: {price}
+                </p>
+              ))}
             </div>
+
 
             {/* 🌿 Benefits Section */}
             {translatedBenefits && (
@@ -251,7 +288,6 @@ const ProductDetails = () => {
                     <li key={idx}>{b}</li>
                   ))}
                 </ul>
-
                 {isMobile && translatedBenefits?.length > 1 && (
                   <button
                     onClick={() => setShowMore(!showMore)}
@@ -267,12 +303,13 @@ const ProductDetails = () => {
                           : "अधिक दाखवा"}
                     </span>
                     {showMore ? (
-                      <FaChevronUp className="text-[#5C2C06]" />
+                      <FaChevronUp className="text-[#5C2C06] animate-smooth-bounce" />
                     ) : (
-                      <FaChevronDown className="text-[#5C2C06]" />
+                      <FaChevronDown className="text-[#5C2C06] animate-smooth-bounce" />
                     )}
                   </button>
                 )}
+
               </div>
             )}
 
@@ -311,8 +348,8 @@ const ProductDetails = () => {
               <label className="block text-sm text-gray-600 mb-2">
                 {language === "EN" ? "Select Size" : "आकार निवडा"}
               </label>
-              <div className="flex gap-6">
-                {["500ml", "1L"].map((size) => (
+              <div className="flex flex-wrap gap-6">
+                {Object.keys(product.price || {}).map((size) => (
                   <label key={size} className="flex items-center gap-2">
                     <input
                       type="radio"
@@ -323,7 +360,7 @@ const ProductDetails = () => {
                       className="accent-[#5C2C06]"
                     />
                     <span className="text-gray-700 text-sm sm:text-base">
-                      {size}
+                      {size} – {product.price[size]}
                     </span>
                   </label>
                 ))}
